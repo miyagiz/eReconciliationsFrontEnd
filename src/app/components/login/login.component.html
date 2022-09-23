@@ -7,7 +7,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="/../assets/img/favicon.png">
   <title>
-    Material Dashboard 2 by Creative Tim
+    e-Mutabakat Sitesi
   </title>
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css"
@@ -60,10 +60,23 @@
                       Giriş Yapılıyor...
                     </button>
                   </div>
+
                   <p class="mt-4 text-sm text-center">
-                    Bir Hesabınız Yok Mu ?
-                    <a href="../pages/sign-up.html" class="text-primary text-gradient font-weight-bold">Kayıt Ol</a>
+                    <a data-bs-toggle="modal" data-bs-target="#forgotPasswordModal"
+                      class="text-primary text-gradient font-weight-bold">Şifremi Unuttum</a>
                   </p>
+
+                  <p class="mt-4 text-sm text-center">
+                    Bir Hesabınız Yok mu ?
+                    <a href="/register" class="text-primary text-gradient font-weight-bold">Kayıt Ol</a>
+                  </p>
+
+                  <p class="mt-4 text-sm text-center">
+                    Onay Mailininiz Gelmedi mi ?
+                    <a data-bs-toggle="modal" data-bs-target="#sendAgainConfirmMailModal"
+                      class="text-primary text-gradient font-weight-bold">Tekrar Gönder</a>
+                  </p>
+
                 </form>
               </div>
             </div>
@@ -99,3 +112,59 @@
 </body>
 
 </html>
+
+
+
+<!-- Send Again Confirm Mail Modal -->
+<div class="modal fade" id="sendAgainConfirmMailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title font-weight-normal" id="exampleModalLabel">Aktivasyon Mailini Tekrar Gönder</h5>
+        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Aktivasyon Mailini Tekrar Göndermek İçin Mail Adresinizi Yazınız.</p>
+        <div [class]="changeClassEmailInput(confirmEmail)">
+          <label class="form-label">Mail Adresi</label>
+          <input type="email" [(ngModel)]="confirmEmail" [ngModelOptions]="{standalone: true}" class="form-control">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn bg-gradient-success" data-bs-dismiss="modal" (click)="sendConfirmMail()">Onay
+          Mailini Gönder</button>
+        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Kapat</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Forgot Password Modal -->
+<div class="modal fade" id="forgotPasswordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title font-weight-normal" id="exampleModalLabel">Şifremi Unuttum</h5>
+        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Şifrenizi Sıfırlamak İçin Lütfen Mail Adresinizi Giriniz :</p>
+        <div [class]="changeClassEmailInput(confirmEmail)">
+          <label class="form-label">Mail Adresi</label>
+          <input type="email" [(ngModel)]="confirmEmail" [ngModelOptions]="{standalone: true}" class="form-control">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn bg-gradient-success" data-bs-dismiss="modal" (click)="sendForgotPasswordMail()">Şifre Sıfırlama Mailini Gönder</button>
+        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Kapat</button>
+      </div>
+    </div>
+  </div>
+</div>

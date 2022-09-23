@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   isLoginButtonActive: boolean = true;
   eMail: string = '';
+  confirmEmail: string = '';
   password: string = '';
 
   constructor(
@@ -76,4 +77,33 @@ export class LoginComponent implements OnInit {
       return 'input-group input-group-outline is-invalid my-3';
     }
   }
+
+  sendConfirmMail() {
+    if (this.confirmEmail != '') {
+      this.authService.sendConfirmEmail(this.confirmEmail).subscribe(
+        (res) => {
+          this.toastr.success(res.message);
+        },
+        (err) => {
+          this.toastr.error(err.error);
+        }
+      );
+    }
+  }
+
+
+  sendForgotPasswordMail() {
+    if (this.confirmEmail != '') {
+      this.toastr.warning("Şifre Sıfırlama Mailiniz Gönderiliyor...");
+      this.authService.sendForgotPassword(this.confirmEmail).subscribe(
+        (res) => {
+          this.toastr.success(res.message);
+        },
+        (err) => {
+          this.toastr.error(err.error);
+        }
+      );
+    }
+  }
+
 }

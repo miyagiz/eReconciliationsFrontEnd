@@ -11,13 +11,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { RegisterComponent } from './components/register/register.component';
+import { DatePipe } from '@angular/common';
+import { ConfirmComponent } from './components/register/confirm/confirm.component';
+import { ForgotPasswordComponent } from './components/login/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ConfirmComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,12 +32,14 @@ import { RegisterComponent } from './components/register/register.component';
     BrowserAnimationsModule,
     FormsModule,
     ToastrModule.forRoot({
-      progressBar:true,
-      closeButton:true,
-      timeOut:3000
-    })
+      progressBar: true,
+      closeButton: true,
+      timeOut: 3000,
+    }),
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    [DatePipe]
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
